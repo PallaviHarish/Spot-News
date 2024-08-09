@@ -1,70 +1,70 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SpotNews
 
-## Available Scripts
+SpotNews is a ReactJS-based web application that fetches and displays real-time news across various categories. The application utilizes a public news API to provide users with the latest news articles, featuring an infinite scroll feature and a skeleton loader for a seamless user experience.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Real-Time News**: Fetches the latest news articles from a public API.
+- **Category-Based News**: View news across various categories such as Technology, Sports, Business, Entertainment, and more.
+- **Infinite Scroll**: Automatically loads more articles as you scroll down the page.
+- **Skeleton Loader**: Provides a smooth loading experience while the news content is being fetched.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To run this project locally, follow these steps:
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/) (version 14.x or later)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
 
-### `npm run build`
+### Clone the Repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/yourusername/spotnews.git
+cd spotnews
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Install Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+### Set Up Environment Variables
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a `.env` file in the root of your project and add your API key:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+REACT_APP_NEWS_API_KEY=your_api_key_here
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Running the Application
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To start the development server:
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This will start the application on `http://localhost:3000`. Open it in your browser to see SpotNews in action.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Build for Production
 
-### Code Splitting
+To create a production build:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm run build
+```
 
-### Analyzing the Bundle Size
+This will create an optimized build of your application in the `build/` directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing
 
-### Making a Progressive Web App
+Contributions are welcome! Please fork this repository and submit a pull request with your changes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
