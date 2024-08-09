@@ -1,0 +1,145 @@
+import React, { Component } from "react";
+import NewsItem from "./NewsItem";
+import Spinner from "./Spinner";
+import PropTypes from "prop-types";
+export class NewsContainer extends Component {
+  static defaultProps = {
+    // pageSize: 4,
+    country: "in",
+    category: "science",
+  };
+  static propTypes = {
+    country: PropTypes.string,
+    category: PropTypes.string,
+    // pageSize: PropTypes.number,
+  };
+  articles = [];
+  capitalize(s) {
+    return s && s[0].toUpperCase() + s.slice(1);
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: this.articles,
+      loading: false,
+      page: 1,
+      totalResults: 0,
+    };
+    document.title = `${this.capitalize(this.props.category)} - Spot News`;
+  }
+  async updateNews() {
+    this.setState({ loading: true });
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=5d19b2017dc0446191ff787595f0e70a&page=1&pageSize=${this.props.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    this.setState({
+      articles: parsedData.articles,
+      totalResults: parsedData.totalResults,
+      loading: false,
+    });
+  }
+  async componentDidMount() {
+    this.updateNews();
+  }
+  handlePrevClick = async () => {
+    this.setState({
+      page: this.state.page - 1,
+    });
+    this.updateNews();
+  };
+  handleNextClick = async () => {
+    this.setState({
+      page: this.state.page + 1,
+    });
+    this.updateNews();
+  };
+  render() {
+    return (
+      <>
+        <div className="container">
+          <h3
+            style={{
+              textAlign: "center",
+              color: "black",
+              fontWeight: "bold",
+              fontFamily: "Playfair Display",
+            }}
+          >
+            Top News Today
+          </h3>
+          <p
+            className="line"
+            style={{
+              textAlign: "center",
+              marginTop: "15px",
+              marginBottom: "30px",
+              fontFamily: "Merriweather",
+              fontSize: "12px",
+            }}
+          >
+            {this.capitalize(this.props.category)} News
+          </p>
+          {this.state.loading && <Spinner />}
+          <div
+            className=""
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+              // gap: "30px",
+            }}
+          >
+            {!this.state.loading &&
+              this.state.articles.map((element) => {
+                // console.log(element);
+                return (
+                  <div className="" key={element.url}>
+                    <NewsItem
+                      // title={element.title.slice(0, 60)}
+                      title={element.title ? element.title : ""}
+                      description={
+                        element.description ? element.description : ""
+                      }
+                      author={element.author}
+                      date={element.publishedAt}
+                      source={element.source.name}
+                      imageUrl={
+                        element.urlToImage
+                          ? element.urlToImage
+                          : "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+                      }
+                      newsUrl={element.url}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+          {!this.state.loading && (
+            <div className="container d-flex justify-content-between">
+              <button
+                disabled={this.state.page <= 1}
+                type="button"
+                className="btn btn-dark"
+                onClick={this.handlePrevClick}
+              >
+                &larr; Previous
+              </button>
+              <button
+                type="button"
+                className="btn btn-dark"
+                disabled={
+                  this.state.page + 1 >
+                  Math.ceil(this.state.totalResults / this.props.pageSize)
+                }
+                onClick={this.handleNextClick}
+              >
+                Next &rarr;
+              </button>
+            </div>
+          )}
+        </div>
+      </>
+    );
+  }
+}
+export default NewsContainer;
